@@ -1,8 +1,6 @@
 import React from 'react';
-import {Text} from 'react-native';
-
-import {} from 'react-native/Libraries/NewAppScreen';
+import { Text } from 'react-native';
 
 export default function App() {
-  return <Text>Hello World</Text>;
+    return <Text>Hello World</Text>;
 }
