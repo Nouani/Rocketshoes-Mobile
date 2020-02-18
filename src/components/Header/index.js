@@ -1,19 +1,32 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { Wrapper, Container, Logo, ContainerBasket, ItemCount } from './styles';
+import {
+    Wrapper,
+    Container,
+    ContainerLogo,
+    Logo,
+    ContainerBasket,
+    ItemCount,
+} from './styles';
 
-export default function Header() {
+export default function Header({ navigation }) {
     return (
-        <Wrapper>
-            <Container>
-                <Logo />
-                <ContainerBasket>
-                    <Icon name="shopping-basket" color="#FFF" size={24} />
-                    <ItemCount>1</ItemCount>
-                </ContainerBasket>
-            </Container>
-        </Wrapper>
+        <>
+            <Wrapper>
+                <Container>
+                    <ContainerLogo onPress={() => navigation.navigate('Home')}>
+                        <Logo />
+                    </ContainerLogo>
+                    <ContainerBasket
+                        onPress={() => navigation.navigate('Cart')}
+                    >
+                        <Icon name="shopping-basket" color="#FFF" size={24} />
+                        <ItemCount>1</ItemCount>
+                    </ContainerBasket>
+                </Container>
+            </Wrapper>
+        </>
     );
 }
