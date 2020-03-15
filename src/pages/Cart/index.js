@@ -43,7 +43,7 @@ export default class Cart extends Component {
                             <ProductTitle>
                                 Tênis de Caminhada Leve Confortável
                             </ProductTitle>
-                            <ProductPrice>R$179,90</ProductPrice>
+                            <ProductPrice>R$ 179,90</ProductPrice>
                         </Details>
                         <ProductDelete>
                             <Icon
@@ -71,14 +71,14 @@ export default class Cart extends Component {
                                 />
                             </ProductControlButton>
                         </ProductControls>
-                        <ProductSubtotal>R$179,90</ProductSubtotal>
+                        <ProductSubtotal>R$ 179,90</ProductSubtotal>
                     </ProductFooter>
                 </Product>
                 <Footer>
-                    <TotalText>Total</TotalText>
-                    <TotalPrice>R$179,90</TotalPrice>
+                    <TotalText>TOTAL</TotalText>
+                    <TotalPrice>R$ 179,90</TotalPrice>
                     <Order>
-                        <OrderText>Finalizar Pedido</OrderText>
+                        <OrderText>FINALIZAR PEDIDO</OrderText>
                     </Order>
                 </Footer>
             </Container>
