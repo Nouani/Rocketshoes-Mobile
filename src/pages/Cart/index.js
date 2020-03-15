@@ -21,6 +21,8 @@ import {
     TotalPrice,
     Order,
     OrderText,
+    EmptyContainer,
+    EmptyText,
 } from './styles';
 
 import colors from '../../styles/colors';
@@ -81,6 +83,10 @@ export default class Cart extends Component {
                         <OrderText>FINALIZAR PEDIDO</OrderText>
                     </Order>
                 </Footer>
+                {/* <EmptyContainer>
+                    <Icon name="remove-shopping-cart" size={64} color="#eee" />
+                    <EmptyText>Seu carrinho está vazio.</EmptyText>
+                </EmptyContainer> */}
             </Container>
         );
     }

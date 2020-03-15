@@ -105,3 +105,15 @@ export const OrderText = styled.Text`
     font-weight: bold;
     font-size: 13px;
 `;
+
+export const EmptyContainer = styled.View`
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const EmptyText = styled.Text`
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 10px;
+`;
