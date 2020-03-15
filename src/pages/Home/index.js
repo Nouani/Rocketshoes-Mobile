@@ -1,17 +1,59 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { Container } from './styles';
+import {
+    Lista,
+    ContainerProduct,
+    ImageProduct,
+    Name,
+    Price,
+    ButtonContainer,
+    AddProduct,
+    ProductAmount,
+    Amount,
+} from './styles';
 
 import api from '../../services/api';
+import { formatPrice } from '../../utils/format';
 
 export default class Home extends Component {
+    state = {
+        products: [],
+    };
+
     async componentDidMount() {
+        // const response = await api.get('/cep/13070770');
         const response = await api.get('/products');
-        console.log(response);
+        this.setState({ products: response.data });
     }
 
+    handleAddProduct = ({ item }) => {
+        return (
+            <ContainerProduct key={item.id}>
+                <ImageProduct source={{ uri: item.image }} />
+                <Name>{item.title}</Name>
+                <Price>{formatPrice(item.price)}</Price>
+                <ButtonContainer>
+                    <ProductAmount>
+                        <Icon name="add-shopping-cart" color="#FFF" size={20} />
+                        <Amount>0</Amount>
+                    </ProductAmount>
+                    <AddProduct>Adicionar</AddProduct>
+                </ButtonContainer>
+            </ContainerProduct>
+        );
+    };
+
     render() {
-        return <Text>HOME</Text>;
+        const { products } = this.state;
+        return (
+            <Lista
+                data={products}
+                horizontal
+                keyExtractor={product => String(product.id)}
+                renderItem={this.handleAddProduct}
+            />
+        );
     }
 }
