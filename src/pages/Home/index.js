@@ -26,7 +26,13 @@ class Home extends Component {
     async componentDidMount() {
         // const response = await api.get('/cep/13070770');
         const response = await api.get('/products');
-        this.setState({ products: response.data });
+
+        const data = response.data.map(product => ({
+            ...product,
+            priceFormatted: formatPrice(product.price),
+        }));
+
+        this.setState({ products: data });
     }
 
     handleAddToCart = product => {
@@ -42,7 +48,7 @@ class Home extends Component {
             <ContainerProduct key={item.id}>
                 <ImageProduct source={{ uri: item.image }} />
                 <Name>{item.title}</Name>
-                <Price>{formatPrice(item.price)}</Price>
+                <Price>{item.priceFormatted}</Price>
                 <ButtonContainer onPress={() => this.handleAddToCart(item)}>
                     <ProductAmount>
                         <Icon name="add-shopping-cart" color="#FFF" size={20} />
