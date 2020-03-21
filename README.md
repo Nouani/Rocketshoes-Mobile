@@ -35,7 +35,7 @@
 </p>
 
 <p align="center">
-  <img alt="Demo" src="https://user-images.githubusercontent.com/49238044/77218679-ad548b00-6b0c-11ea-9378-c4bef07c5f62.gif"
+  <img alt="Demo" src="https://user-images.githubusercontent.com/49238044/77218745-61561600-6b0d-11ea-82d7-3e2e9a80ec75.gif"
   style="height: 10px;"/>
 </p>
 
