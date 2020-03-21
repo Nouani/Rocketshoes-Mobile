@@ -6,11 +6,16 @@ import './config/reactotronConfig';
 
 import Routes from './routes';
 import store from './store';
+import NavigationService from './services/navigation';
 
 export default function App() {
     return (
         <Provider store={store}>
-            <Routes />
+            <Routes
+                ref={navigationRef =>
+                    NavigationService.setNavigator(navigationRef)
+                }
+            />
         </Provider>
     );
 }
