@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
-import { connect } from 'react-redux';
+import {} from 'react-native';
+import { useSelector } from 'react-redux';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -13,7 +13,8 @@ import {
     ItemCount,
 } from './styles';
 
-function Header({ navigation, cartSize }) {
+export default function Header({ navigation }) {
+    const cartSize = useSelector(state => state.cart.length);
     return (
         <>
             <Wrapper>
@@ -32,7 +33,3 @@ function Header({ navigation, cartSize }) {
         </>
     );
 }
-
-export default connect(state => ({
-    cartSize: state.cart.length,
-}))(Header);
