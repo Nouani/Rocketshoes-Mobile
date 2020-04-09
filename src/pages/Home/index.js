@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Text } from 'react-native';
+import {} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {
@@ -21,36 +21,34 @@ import * as CartActions from '../../store/modules/cart/actions';
 import api from '../../services/api';
 import { formatPrice } from '../../utils/format';
 
-class Home extends Component {
-    state = {
-        products: [],
-    };
+function Home({ amount, addToCartRequest }) {
+    const [products, setProducts] = useState([]);
 
-    async componentDidMount() {
-        // const response = await api.get('/cep/13070770');
-        const response = await api.get('/products');
+    useEffect(() => {
+        async function loadProducts() {
+            const response = await api.get('/products');
 
-        const data = response.data.map(product => ({
-            ...product,
-            priceFormatted: formatPrice(product.price),
-        }));
+            const data = response.data.map(product => ({
+                ...product,
+                priceFormatted: formatPrice(product.price),
+            }));
 
-        this.setState({ products: data });
+            setProducts(data);
+        }
+        loadProducts();
+    }, []);
+
+    function handleAddToCart(id) {
+        addToCartRequest(id);
     }
 
-    handleAddToCart = id => {
-        const { addToCartRequest } = this.props;
-        addToCartRequest(id);
-    };
-
-    handleAddProduct = ({ item }) => {
-        const { amount } = this.props;
+    function handleAddProduct({ item }) {
         return (
             <ContainerProduct key={item.id}>
                 <ImageProduct source={{ uri: item.image }} />
                 <Name>{item.title}</Name>
                 <Price>{item.priceFormatted}</Price>
-                <ButtonContainer onPress={() => this.handleAddToCart(item.id)}>
+                <ButtonContainer onPress={() => handleAddToCart(item.id)}>
                     <ProductAmount>
                         <Icon name="add-shopping-cart" color="#FFF" size={20} />
                         <Amount>{amount[item.id] || 0}</Amount>
@@ -59,20 +57,16 @@ class Home extends Component {
                 </ButtonContainer>
             </ContainerProduct>
         );
-    };
-
-    render() {
-        const { products } = this.state;
-
-        return (
-            <Lista
-                data={products}
-                horizontal
-                keyExtractor={product => String(product.id)}
-                renderItem={this.handleAddProduct}
-            />
-        );
     }
+
+    return (
+        <Lista
+            data={products}
+            horizontal
+            keyExtractor={product => String(product.id)}
+            renderItem={handleAddProduct}
+        />
+    );
 }
 
 const mapStateToProps = state => ({
